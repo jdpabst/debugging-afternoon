@@ -31,11 +31,25 @@ class App extends Component {
     });
   }
   removeFromCart(index) {
-    let cartCopy = this.state.cart.slice();
-    cartCopy.splice(index, 1);
+    // separating items in cart and saving them to a new variable //
+    let arr = this.state.cart;
+    for(var i = 0; i < arr.length; i++){
+      if(arr[i].id === index.id){
+        console.log(arr);
+        arr.splice(i, 1);
+        console.log(arr);
+        i--
+      }
+    }
+
     this.setState({
-      cart: cartCopy
-    });
+      cart: arr
+    })
+    // let cartCopy = this.state.cart.slice();
+    // cartCopy.splice(index, 1);
+    // this.setState({
+    //   cart: cartCopy
+    // });
   }
   navigate(location) {
     if (location === "cart") {
