@@ -45,12 +45,8 @@ class App extends Component {
     this.setState({
       cart: arr
     })
-    // let cartCopy = this.state.cart.slice();
-    // cartCopy.splice(index, 1);
-    // this.setState({
-    //   cart: cartCopy
-    // });
   }
+  
   navigate(location) {
     if (location === "cart") {
       this.setState({
