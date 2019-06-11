@@ -12,6 +12,9 @@ class App extends Component {
       cart: [],
       showCart: false
     };
+    this.addToCart = this.addToCart.bind(this);
+    this.removeFromCart = this.removeFromCart.bind(this);
+    this.navigate = this.navigate.bind(this);
   }
   componentDidMount() {
     axios
@@ -22,25 +25,38 @@ class App extends Component {
         });
       });
   }
+
   addToCart(item) {
     this.setState({
       cart: [...this.state.cart, item]
     });
   }
+
   removeFromCart(index) {
-    let cartCopy = this.state.cart.slice();
-    cartCopy.splice(index, 1);
+    let cartCopy = this.state.cart;
+    for(var i = 0; i < cartCopy.length; i++){
+      if(cartCopy[i].id === index.id){
+        cartCopy.splice(i, 1);
+        i--;
+      }
+    }
     this.setState({
       cart: cartCopy
-    });
+    })
   }
+
   navigate(location) {
     if (location === "cart") {
-      this.state.showCart = true;
+      this.setState({
+        showCart: true
+      })
     } else {
-      this.state.showCart = false;
+      this.setState({
+        showCart: false
+      })
     }
   }
+
   render() {
     const { products, cart, showCart } = this.state;
     return (
